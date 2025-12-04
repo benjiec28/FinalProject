@@ -16,4 +16,17 @@ public class Student {
         MALE,
         FEMALE
     }
+
+    public void addCourse(Course course) {
+        registeredCourses.add(course);
+        course.getStudent().add(this);
+    }
+
+    public String toSimplifiedString() {
+        String message : // toString method + only courses
+
+        for (Course course : registeredCourses) {
+            message += course.getName() + ",";
+        }
+    }
 }

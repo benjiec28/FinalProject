@@ -15,7 +15,7 @@ public class Address {
         NL,
         NS,
         ON,
-        PE,
+        PEI,
         QC,
         SK
     }
