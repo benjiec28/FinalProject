@@ -6,7 +6,7 @@ public class Course {
     private String courseId;
     private String courseName;
     private double credits;
-    public Department department;
+    private Department department;
     private ArrayList<Assignment> assignments;
     private ArrayList<Student> registeredStudents;
 
