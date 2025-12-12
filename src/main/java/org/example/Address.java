@@ -30,24 +30,24 @@ public class Address {
     }
 
     public static boolean isPostalCodeValid(String postalCode) {
-        if (postalCode.length() != 6) {
+        if ((postalCode == null) || (postalCode.length() != 6)) {
             return false;
         }
 
-        String idxChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String idxDigit = "1234567890";
-
         for (int i = 0; i < postalCode.length(); i++) {
-            if (i % 2 == 0 && postalCode.contains(idxChar)) {
-                return true;
-            }
+            if (i % 2 == 0) {
+                char c = postalCode.charAt(i);
 
-            if (i % 2 == 1 && postalCode.contains(idxDigit)) {
-                return true;
+                if (!Character.isLetter(i)) {
+                    return false;
+                }
+            } else{
+                if (!Character.isDigit(i)) {
+                    return false;
+                }
             }
         }
-
-        return false;
+        return true;
     }
 
     public Address(int streetNo, String street, String city, Province province, String postalCode) {
