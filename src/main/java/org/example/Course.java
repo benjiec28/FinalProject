@@ -18,4 +18,36 @@ public class Course {
     private ArrayList<Student> registeredStudents;
 
     public static int nextId = 0;
+    ..= nextId++;
+
+    public static boolean isAssignmentWeightValid() {
+
+    }
+
+    public static boolean registerStudent(Student student) {
+
+    }
+
+    public static int[] calcStudentsAverage() {
+
+    }
+
+    public static boolean addAssignment(String assignmentName, double weight, int maxScore) {
+
+    }
+
+    public static void generateScores() {
+
+    }
+
+    public static void displayScores() {
+
+    }
+
+    public static String toSimplifiedString() {
+
+    }
+
+    // toString
+
 }

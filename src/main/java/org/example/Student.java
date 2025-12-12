@@ -18,16 +18,24 @@ public class Student {
     private ArrayList<Course> registeredCourses;
 
     public static int nextId = 0;
+    ..= nextId++;
 
     public enum Gender {
         MALE,
         FEMALE
     }
 
-    public void addCourse(Course course) {
-        registeredCourses.add(course);
-        course.getStudent().add(this);
+    public static boolean registerCourse (Course course) {
+
     }
+
+    public static boolean dropCourse(Course course) {
+
+    }
+
+    // constructor
+
+    // toSimplified String
 
     public String toSimplifiedString() {
         String message : // toString method + only courses
@@ -36,4 +44,14 @@ public class Student {
             message += course.getName() + ",";
         }
     }
+
+    // toString
+
+
+
+//    public void addCourse(Course course) {
+//        registeredCourses.add(course);
+//        course.getStudent().add(this);
+//    }
+
 }

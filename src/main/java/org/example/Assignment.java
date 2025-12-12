@@ -9,4 +9,15 @@ public class Assignment {
     private ArrayList<Integer> scores;
 
     public static int nextId = 0;
+    ..= nextId++;
+
+    public static void calcAssignmentAvg() {
+
+    }
+
+    public static void generateRandomScore() {
+
+    }
+
+    //toString
 }
