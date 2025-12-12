@@ -10,17 +10,15 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Department {
     private String departmentId;
-    @Setter private String departmentName;
+    private String departmentName;
 
     public static int nextId = 0;
-    ..= nextId++;
 
     public static boolean isDepartmentNameValid(String departmentName) {
-        String idxLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWWXYZ";
-        String idxSpace = " ";
-
-        if (!departmentName.contains(idxLetters) || !departmentName.contains(idxSpace)) {
-            return false;
+        for (int i = 0; i < departmentName.length() ; i++) {
+            if (!Character.isLetter(i) || Character.isSpaceChar(i)) {
+                return false;
+            }
         }
 
         return true;
@@ -28,8 +26,19 @@ public class Department {
 
     public Department(String departmentName) {
         if (isDepartmentNameValid(departmentName)) {
+            this.departmentId = String.format("D%02d", nextId++);
             this.departmentName = departmentName;
         } else {
+            this.departmentId = null;
+            this.departmentName = null;
+        }
+    }
+
+    public void setDepartmentName(String departmentName) {
+        if (isDepartmentNameValid(departmentName)) {
+            this.departmentName = departmentName;
+        } else {
+            this.departmentId = null;
             this.departmentName = null;
         }
     }
