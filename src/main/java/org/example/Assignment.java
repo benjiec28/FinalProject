@@ -7,7 +7,7 @@ public class Assignment {
     private String assignmentId;
     private String assignmentName;
     private double weight;
-    private ArrayList<Integer> scores;
+    private static ArrayList<Integer> scores;
 
     public static int nextId = 0;
     public static String generateNewId() {
@@ -15,9 +15,13 @@ public class Assignment {
     }
 
     public static void calcAssignmentAvg() {
-        for () {
+        int sum = 0;
 
+        for (int score : scores) {
+            sum += score;
         }
+
+        int avg = sum / scores.size();
     }
 
     public static void generateRandomScore() {
