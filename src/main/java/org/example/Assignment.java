@@ -27,9 +27,9 @@ public class Assignment {
     @Override
     public String toString() {
         return "Assignment{" +
-                "assignmentId='" + assignmentId + '\'' +
-                ", assignmentName='" + assignmentName + '\'' +
-                ", weight=" + weight +
+                String.format("assignmentId= " + nextId++ + '\'' +
+                ", assignmentName= " + assignmentName + '\'' +
+                ", weight= " + weight +
                 '}';
     }
 }
