@@ -18,7 +18,9 @@ public class Student {
     private ArrayList<Course> registeredCourses;
 
     public static int nextId = 0;
-    ..= nextId++;
+//    public static String generateNewId() {
+//        return String.format("%d", nextId++);
+//    }
 
     public enum Gender {
         MALE,
@@ -35,6 +37,16 @@ public class Student {
 
     // constructor
 
+    public Student(String studentName, Gender gender, Address address, Department department) {
+        this.studentId = String.format("%d", nextId++);
+        this.studentName = studentName;
+        this.gender = gender;
+        this.address = address;
+        this.department = department;
+        this.registeredCourses = new ArrayList<>(0);
+    }
+
+
     // toSimplified String
 
     public String toSimplifiedString() {
@@ -47,6 +59,17 @@ public class Student {
 
     // toString
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId='" + studentId + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", gender=" + gender +
+                ", address=" + address +
+                ", department=" + department +
+                ", registeredCourses=" + Course. +
+                '}';
+    }
 
 
 //    public void addCourse(Course course) {
