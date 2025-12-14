@@ -29,7 +29,12 @@ public class Address {
         SK
     }
 
-    public static boolean isPostalCodeValid(String postalCode) {
+    /**
+     * Checks if the postal code is valid.
+     * @param postalCode the postal code.
+     * @return true if the postal code is valid ; false if it's not.
+     */
+    private static boolean isPostalCodeValid(String postalCode) {
         if ((postalCode == null) || (postalCode.length() != 6)) {
             return false;
         }

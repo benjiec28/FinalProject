@@ -18,12 +18,16 @@ public class Assignment {
 
     public static int nextId = 0;
 
-    public Assignment(String assignmentName, double weight) {
+    public Assignment(String assignmentName, double weight, int maxScore) {
         this.assignmentId = String.format("%d", nextId++);
         this.assignmentName = assignmentName;
         this.weight = weight;
+        this.scores = new ArrayList<>();
     }
 
+    /**
+     * calculates the average score for the assignment.
+     */
     public void calcAssignmentAvg() {
         int sum = 0;
 
@@ -34,25 +38,32 @@ public class Assignment {
         int avg = sum / scores.size();
     }
 
+    /**
+     * generates random scores for all students in an assignment.
+     */
     public void generateRandomScore() {
         Random random = new Random();
-        int randomValue = random.nextInt(0,10);
+        scores.clear();
         int randomScore = 0;
 
-        if (randomValue == 0) {
-            randomScore = random.nextInt(0,60);
+        for (int i = 0; i < scores.size(); i++) {
+            int randomValue = random.nextInt(0, 10);
 
-        } else if (randomValue == 1 || randomValue == 2) {
-            randomScore = random.nextInt(60, 70);
+            if (randomValue == 0) {
+                randomScore = random.nextInt(0, 60);
 
-        }else if (randomValue == 3 || randomValue == 4) {
-            randomScore = random.nextInt(70, 80);
+            } else if (randomValue == 1 || randomValue == 2) {
+                randomScore = random.nextInt(60, 70);
 
-        }else if (randomValue == 5 || randomValue == 6 || randomValue == 7 || randomValue == 8) {
-            randomScore = random.nextInt(80, 90);
+            } else if (randomValue == 3 || randomValue == 4) {
+                randomScore = random.nextInt(70, 80);
 
-        }else if (randomValue == 9 || randomValue == 10) {
-            randomScore = random.nextInt(90, 100);
+            } else if (randomValue == 5 || randomValue == 6 || randomValue == 7 || randomValue == 8) {
+                randomScore = random.nextInt(80, 90);
+
+            } else if (randomValue == 9 || randomValue == 10) {
+                randomScore = random.nextInt(90, 100 + 1);
+            }
         }
 
         scores.add(randomScore);

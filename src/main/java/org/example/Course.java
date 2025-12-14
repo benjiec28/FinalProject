@@ -22,16 +22,19 @@ public class Course {
 
     public static int nextId = 0;
 
-    public Course(String courseId, String courseName, double credits, Department department) {
+    public Course(String courseName, double credits, Department department) {
         this.courseId = String.format("C-%d-%02d", department.getDepartmentId(), nextId++);
         this.courseName =  Util.toTitleCase(courseName);
         this.credits = credits;
         this.department = department;
+        this.assignments = new ArrayList<>();
+        this.registeredStudents = new ArrayList<>();
+        this.finalScores = new ArrayList<>();
     }
 
     /**
-     *
-     * @return
+     * checks if the sum of all assignments is equal to 100%.
+     * @return true if it's equal to 100% ; false if it returns any other value.
      */
     public boolean isAssignmentWeightValid() {
         double totalSum = 0;
@@ -45,9 +48,11 @@ public class Course {
     }
 
     /**
-     *
-     * @param student
-     * @return
+     * add student to registered students list.
+     * makes all new assignments null.
+     * makes final score null.
+     * @param student the student.
+     * @return true if the student was registered to the registered student list ; false if the student is already on the list.
      */
     public boolean registerStudent(Student student) {
         if (registeredStudents.contains(student)) {
@@ -66,8 +71,8 @@ public class Course {
     }
 
     /**
-     *
-     * @return
+     * calculates the weighted average of a student.
+     * @return the weighted average of the students.
      */
     public int[] calcStudentsAverage() {
         int totalStudents = registeredStudents.size();
@@ -96,14 +101,18 @@ public class Course {
     }
 
     /**
-     *
-     * @param assignmentName
-     * @param weight
-     * @param maxScore
-     * @return
+     * adds a new assignment.
+     * @param assignmentName the name of the assignment.
+     * @param weight the weight of the assignment.
+     * @param maxScore the max score of the assignment.
+     * @return true if the assignment was added  ; false if the assignment was already present is the assignments list.
      */
     public boolean addAssignment(String assignmentName, double weight, int maxScore) {
         Assignment assignment = new Assignment(assignmentName, weight, maxScore);
+
+        if (assignments.contains(assignment)) {
+            return false;
+        }
 
         assignments.add(assignment);
 
@@ -116,7 +125,7 @@ public class Course {
     }
 
     /**
-     *
+     * generates random scores.
      */
     public void generateScores() {
         Random random = new Random();
@@ -136,7 +145,7 @@ public class Course {
     }
 
     /**
-     *
+     * displays all student scores.
      */
     public void displayScores() {
         // Title
@@ -185,10 +194,6 @@ public class Course {
 
     }
 
-    /**
-     *
-     * @return
-     */
     public String toSimplifiedString() {
         return "Course{" +
                 "courseId='" + courseId + '\'' +

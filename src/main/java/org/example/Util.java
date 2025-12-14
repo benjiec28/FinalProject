@@ -1,7 +1,8 @@
 package org.example;
 
-import java.util.Arrays;
-
+/**
+ * makes the string to title case.
+ */
 public class Util {
     public static String toTitleCase(String str) {
         if (str == null || str.isEmpty()) {

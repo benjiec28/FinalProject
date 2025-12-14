@@ -5,16 +5,22 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+@Setter
 @Getter
 @ToString
 @EqualsAndHashCode
 public class Department {
-    public String departmentId;
+    private String departmentId;
     private String departmentName;
 
     public static int nextId = 0;
 
-    public static boolean isDepartmentNameValid(String departmentName) {
+    /**
+     * Checks if the department name is valid.
+     * @param departmentName the department name
+     * @return true if the department name is valid ; false if it's not.
+     */
+    private static boolean isDepartmentNameValid(String departmentName) {
         for (int i = 0; i < departmentName.length() ; i++) {
             if (!Character.isLetter(i) || Character.isSpaceChar(i)) {
                 return false;

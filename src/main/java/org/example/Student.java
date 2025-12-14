@@ -24,6 +24,13 @@ public class Student {
         FEMALE
     }
 
+    /**
+     * adds a course to the registeredCourses list.
+     * adds the student to the registeredStudents list.
+     * makes the score of each assignment null.
+     * @param course the course the student is registering in.
+     * @return true if the student is registering to the course ; false if the student is already registered.
+     */
     public boolean registerCourse (Course course) {
         if (registeredCourses.contains(course)) {
             return false;
@@ -39,6 +46,12 @@ public class Student {
         return true;
     }
 
+    /**
+     * removes the course from the registeredCourses list.
+     * removes the student from the registeredStudents list.
+     * @param course the course the student is dropping.
+     * @return true if the student is dropping the course ; false if the student is not on the registered course list to begin with.
+     */
     public boolean dropCourse(Course course) {
         if (registeredCourses.contains(course)) {
             return false;
@@ -61,8 +74,8 @@ public class Student {
     public String toSimplifiedString() {
         return "Student{" +
                 "studentId='" + studentId + '\'' +
-        ", studentName='" + studentName +'\'' +
-        ", departmentName=" + department.getDepartmentName() +
+                ", studentName='" + studentName +'\'' +
+                ", departmentName=" + department.getDepartmentName() +
                 '}';
     }
 
