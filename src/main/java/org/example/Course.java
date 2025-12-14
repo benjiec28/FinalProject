@@ -153,9 +153,9 @@ public class Course {
         System.out.println();
 
         // List of Assignments + Final Score
-        System.out.printf("%-20", "");
+        System.out.printf("%-20s", "");
         for (Assignment assignment : assignments) {
-            System.out.printf("%-15", assignment.getAssignmentName());
+            System.out.printf("%-15s", assignment.getAssignmentName());
         }
 
         System.out.printf("%-15%n", "FinalScore");
@@ -205,12 +205,27 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course{" +
-                "courseId='" + courseId + '\'' +
+        String string = "courseId='" + courseId + '\'' +
                 ", courseName='" + courseName + '\'' +
-                ", department=" + department +
-                ", assignments=" + assignments +
-                ", registeredStudents=" + registeredStudents +
-                '}';
+                ", department=" + department.getDepartmentName() + "\n";
+
+        string += "assignments=";
+        for (Assignment assignment : assignments) {
+            string += assignment.getAssignmentName() + "(" + assignment.getWeight() +"%)";
+        }
+
+        string += "\n";
+
+        string += "students=";
+        for (Student student : registeredStudents) {
+            string += student.getStudentId() + "-" + student.getStudentName() + "(" + student.getDepartment().getDepartmentName();
+        }
+
+        string += "\n";
+
+        string += "validity of assignment weight=" + isAssignmentWeightValid();
+
+        return string;
+
     }
 }

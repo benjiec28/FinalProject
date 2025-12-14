@@ -79,16 +79,34 @@ public class Student {
                 '}';
     }
 
+
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId='" + studentId + '\'' +
+        String string = "studentId='" + studentId + '\'' +
                 ", studentName='" + studentName + '\'' +
                 ", gender=" + gender +
                 ", address=" + address +
-                ", department=" + department +
-                ", registeredCourses=" + registeredCourses.toString() +
-                '}';
+                ", department=" + department.getDepartmentName() +
+                ", \nregisteredCourses=";
+
+            if (registeredCourses.isEmpty()) {
+                string += "none";
+
+            } else {
+                for (int i = 0; i < registeredCourses.size(); i++) {
+                    Course course = registeredCourses.get(i);
+                    string += course.getCourseId() + "-" +
+                            course.getCourseName() + "(" +
+                            course.getDepartment().getDepartmentName() + ")";
+
+                    if (i < registeredCourses.size() - 1) {
+                        string += ",";
+                    }
+                }
+            }
+
+
+            return string;
     }
 
 }
