@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Department {
-    private String departmentId;
+    public String departmentId;
     private String departmentName;
 
     public static int nextId = 0;
@@ -27,7 +27,7 @@ public class Department {
     public Department(String departmentName) {
         if (isDepartmentNameValid(departmentName)) {
             this.departmentId = String.format("D%02d", nextId++);
-            this.departmentName = departmentName;
+            this.departmentName = Util.toTitleCase(departmentName);
         } else {
             this.departmentId = null;
             this.departmentName = null;
@@ -36,7 +36,7 @@ public class Department {
 
     public void setDepartmentName(String departmentName) {
         if (isDepartmentNameValid(departmentName)) {
-            this.departmentName = departmentName;
+            this.departmentName = Util.toTitleCase(departmentName);
         } else {
             this.departmentId = null;
             this.departmentName = null;

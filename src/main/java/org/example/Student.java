@@ -16,11 +16,10 @@ public class Student {
     private Address address;
     private Department department;
     private ArrayList<Course> registeredCourses;
+    private Assignment assignment;
+    public ArrayList<Student> registeredStudents;
 
     public static int nextId = 0;
-//    public static String generateNewId() {
-//        return String.format("%d", nextId++);
-//    }
 
     public enum Gender {
         MALE,
@@ -28,26 +27,42 @@ public class Student {
     }
 
     public static boolean registerCourse (Course course) {
+        ArrayList<Course> registeredCourses = new ArrayList<>();
 
+        if (registeredCourses.contains(course)) {
+            return false;
+        } else {
+            registeredCourses.add(course);
+            registeredCourses.
+        }
+
+        return true;
     }
 
     public static boolean dropCourse(Course course) {
 
-    }
 
-    // constructor
+//        ArrayList<Course> registeredCourses = new ArrayList<>();
+//        registeredCourses.remove(course);
+//
+//        ArrayList<Student> registeredStudents = new ArrayList<>();
+//
+//        if (!registeredStudents.contains(Student)) {
+//            return registeredStudents;
+//        } else {
+//            registeredStudents.remove(Student);
+//        }
+//        return registeredStudents.toString() && registeredCourses.toString();
+    }
 
     public Student(String studentName, Gender gender, Address address, Department department) {
         this.studentId = String.format("%d", nextId++);
-        this.studentName = studentName;
+        this.studentName = Util.toTitleCase(studentName);
         this.gender = gender;
         this.address = address;
         this.department = department;
         this.registeredCourses = new ArrayList<>(0);
     }
-
-
-    // toSimplified String
 
     public String toSimplifiedString() {
         String message : // toString method + only courses
@@ -57,8 +72,6 @@ public class Student {
         }
     }
 
-    // toString
-
     @Override
     public String toString() {
         return "Student{" +
@@ -67,14 +80,8 @@ public class Student {
                 ", gender=" + gender +
                 ", address=" + address +
                 ", department=" + department +
-                ", registeredCourses=" + Course. +
+                ", registeredCourses=" + +
                 '}';
     }
-
-
-//    public void addCourse(Course course) {
-//        registeredCourses.add(course);
-//        course.getStudent().add(this);
-//    }
 
 }

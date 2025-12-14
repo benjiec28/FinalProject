@@ -16,11 +16,19 @@ public class Course {
     private double credits;
     private Department department;
     private ArrayList<Assignment> assignments;
-    private ArrayList<Student> registeredStudents;
+    public ArrayList<Student> registeredStudents;
+
 
     public static int nextId = 0;
     public static String generateNewId() {
-        return String.format("%d", nextId++);};
+        return String.format("C-%d-%d", Department.departmenId, nextId++);};
+
+    public Course(String courseId, String courseName, double credits, Department department) {
+        this.courseId = courseId;
+        this.courseName =  Util.toTitleCase(courseName);
+        this.credits = credits;
+        this.department = department;
+    }
 
     public static boolean isAssignmentWeightValid() {
         int totalSum = 0;
@@ -29,9 +37,7 @@ public class Course {
 
         for (int i = 0; i < assignments.size(); i++) {
             assignments.get(i);
-            int weight = Assignment.getWeight;
-            int weightPercentage = weight / 100;
-            i *= weightPercentage;
+            int weight = Assignment.Weight();
             totalSum += i;
         }
 
@@ -49,30 +55,37 @@ public class Course {
     }
 
     public static int[] calcStudentsAverage() {
-        int[] averages = new int[];
+        ArrayList<Student> registeredStudents = new ArrayList<>();
+        int size = registeredStudents.size();
         ArrayList<Assignment> assignments = new ArrayList<>();
+
+        int[] avgArray = new int[size];
         int avg = 0;
-        for (int i = 0; i < averages.length; i++) {
+
+        for (int i = 0; i < avgArray.length; i++) {
             assignments.get(i);
             int weight = Assignment.getWeight;
             int weightPercentage = weight / 100;
             i *= weightPercentage;
             avg += i;
         }
+
+        for ()
+
     }
 
     public static boolean addAssignment(String assignmentName, double weight, int maxScore) {
 
     }
 
-    public static void generateScores() {
+    public void generateScores() {
+
+    }
+
+    public void displayScores() {
         System.out.printf("Course: %s\n", courseId);
         System.out.print("                        Assignment01   Assignment02   Assignment03         Exam01         Exam02    Final Score\n");
         System.out.printf(" Ethan Collins             %02d           %02d            %02d             %02d           %02d          %02d\n");
-    }
-
-    public static void displayScores() {
-
     }
 
     public static String toSimplifiedString() {
