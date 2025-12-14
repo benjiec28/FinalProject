@@ -167,17 +167,17 @@ public class Course {
         // Averages
         System.out.printf("%-20s", "Average");
         for (Assignment assignment : assignments) {
-            int sum = 0;
-            int count = 0;
+            int totalScore = 0;
+            int numAssignments = 0;
 
             for (Integer score : assignment.getScores()) {
                 if (score != null) {
-                    sum += score;
-                    count ++;
+                    totalScore += score;
+                    numAssignments ++;
                 }
             }
 
-            int avg = count == 0 ? 0 : Math.round(sum / count);
+            int avg = numAssignments == 0 ? 0 : Math.round(totalScore / numAssignments);
             System.out.printf("%-15d", avg);
         }
 
@@ -189,10 +189,23 @@ public class Course {
      *
      * @return
      */
-    public static String toSimplifiedString() {
-
+    public String toSimplifiedString() {
+        return "Course{" +
+                "courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", credits=" + credits +
+                ", department=" + department.getDepartmentName() +
+                '}';
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", department=" + department +
+                ", assignments=" + assignments +
+                ", registeredStudents=" + registeredStudents +
+                '}';
+    }
 }
