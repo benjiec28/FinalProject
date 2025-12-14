@@ -120,15 +120,69 @@ public class Course {
      */
     public void generateScores() {
         Random random = new Random();
+        int totalStudents = registeredStudents.size();
+
+        for (Assignment assignment : assignments) {
+
+            for (int i = 0; i < totalStudents; i++) {
+                int maxScore = 100;
+                int randomScore = random.nextInt(maxScore + 1);
+
+                assignment.getScores().set(i, randomScore);
+            }
+        }
+
+        this.calcStudentsAverage();
     }
 
     /**
      *
      */
     public void displayScores() {
-        System.out.printf("Course: %s\n", courseId);
-        System.out.print("                        Assignment01   Assignment02   Assignment03         Exam01         Exam02    Final Score\n");
-        System.out.printf(" Ethan Collins             %02d           %02d            %02d             %02d           %02d          %02d\n");
+        // Title
+        System.out.printf("Course : " + courseName + "(" + courseId + ")");
+        System.out.println();
+
+        // List of Assignments + Final Score
+        System.out.printf("%-20", "");
+        for (Assignment assignment : assignments) {
+            System.out.printf("%-15", assignment.getAssignmentName());
+        }
+
+        System.out.printf("%-15%n", "FinalScore");
+
+        // Student Name + Scores
+        for (int i = 0; i< registeredStudents.size(); i++) {
+            Student student = registeredStudents.get(i);
+
+            System.out.printf("%-20s", student.getStudentName());
+
+            for (Assignment assignment : assignments) {
+                Integer score = assignment.getScores().get(i);
+                System.out.printf("%-15d%n", score == null ? "-" : score);
+            }
+            System.out.printf("");
+        }
+
+        // Averages
+        System.out.printf("%-20s", "Average");
+        for (Assignment assignment : assignments) {
+            int sum = 0;
+            int count = 0;
+
+            for (Integer score : assignment.getScores()) {
+                if (score != null) {
+                    sum += score;
+                    count ++;
+                }
+            }
+
+            int avg = count == 0 ? 0 : Math.round(sum / count);
+            System.out.printf("%-15d", avg);
+        }
+
+        System.out.println();
+
     }
 
     /**
