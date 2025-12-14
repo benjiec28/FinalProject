@@ -16,8 +16,6 @@ public class Student {
     private Address address;
     private Department department;
     private ArrayList<Course> registeredCourses;
-    private Assignment assignment;
-    public ArrayList<Student> registeredStudents;
 
     public static int nextId = 0;
 
@@ -26,33 +24,29 @@ public class Student {
         FEMALE
     }
 
-    public static boolean registerCourse (Course course) {
-        ArrayList<Course> registeredCourses = new ArrayList<>();
-
+    public boolean registerCourse (Course course) {
         if (registeredCourses.contains(course)) {
             return false;
-        } else {
-            registeredCourses.add(course);
-            registeredCourses.
+        }
+
+        registeredCourses.add(course);
+        course.getRegisteredStudents().add(this);
+
+        for (Assignment assignment : course.getAssignments()) {
+            assignment.getScores().add(null);
         }
 
         return true;
     }
 
-    public static boolean dropCourse(Course course) {
+    public boolean dropCourse(Course course) {
+        if (registeredCourses.contains(course)) {
+            return false;
+        }
+            registeredCourses.remove(course);
+            course.getRegisteredStudents().remove(this);
 
-
-//        ArrayList<Course> registeredCourses = new ArrayList<>();
-//        registeredCourses.remove(course);
-//
-//        ArrayList<Student> registeredStudents = new ArrayList<>();
-//
-//        if (!registeredStudents.contains(Student)) {
-//            return registeredStudents;
-//        } else {
-//            registeredStudents.remove(Student);
-//        }
-//        return registeredStudents.toString() && registeredCourses.toString();
+            return true;
     }
 
     public Student(String studentName, Gender gender, Address address, Department department) {
@@ -62,14 +56,6 @@ public class Student {
         this.address = address;
         this.department = department;
         this.registeredCourses = new ArrayList<>(0);
-    }
-
-    public String toSimplifiedString() {
-        String message : // toString method + only courses
-
-        for (Course course : registeredCourses) {
-            message += course.getName() + ",";
-        }
     }
 
     @Override
