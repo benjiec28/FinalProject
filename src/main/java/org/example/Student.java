@@ -58,6 +58,14 @@ public class Student {
         this.registeredCourses = new ArrayList<>(0);
     }
 
+    public String toSimplifiedString() {
+        return "Student{" +
+                "studentId='" + studentId + '\'' +
+        ", studentName='" + studentName +'\'' +
+        ", departmentName=" + department.getDepartmentName() +
+                '}';
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -66,7 +74,7 @@ public class Student {
                 ", gender=" + gender +
                 ", address=" + address +
                 ", department=" + department +
-                ", registeredCourses=" + +
+                ", registeredCourses=" + registeredCourses.toString() +
                 '}';
     }
 
