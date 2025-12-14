@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 @Getter
 @Setter
@@ -68,9 +69,30 @@ public class Course {
      *
      * @return
      */
-    public static int[] calcStudentsAverage() {
+    public int[] calcStudentsAverage() {
+        int totalStudents = registeredStudents.size();
+        int[] finalScoresArray = new int[totalStudents];
 
+        finalScores.clear();
 
+        for (int i = 0; i < totalStudents; i++) {
+            double totalWeight = 0.0;
+
+            for (Assignment assignment : assignments) {
+                Integer score = assignment.getScores().get(i);
+
+                if (score != null) {
+                    totalWeight += score * (assignment.getWeight() / 100);
+                }
+
+                int roundScore = (int) Math.round(totalWeight);
+                finalScores.add((double) roundScore);
+
+                finalScoresArray[i] = roundScore;
+            }
+        }
+
+        return finalScoresArray;
     }
 
     /**
@@ -80,7 +102,16 @@ public class Course {
      * @param maxScore
      * @return
      */
-    public static boolean addAssignment(String assignmentName, double weight, int maxScore) {
+    public boolean addAssignment(String assignmentName, double weight, int maxScore) {
+        Assignment assignment = new Assignment(assignmentName, weight, maxScore);
+
+        assignments.add(assignment);
+
+        for (int i = 0; i < registeredStudents.size(); i++) {
+            assignment.getScores().add(null);
+        }
+
+        return true;
 
     }
 
@@ -88,7 +119,7 @@ public class Course {
      *
      */
     public void generateScores() {
-
+        Random random = new Random();
     }
 
     /**
