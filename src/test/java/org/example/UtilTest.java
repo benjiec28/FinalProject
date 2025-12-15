@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class MainTest {
+public class UtilTest {
 
     @Test
     @DisplayName("toTitleCase() : bENJAMIN Elli CuNaNaN -> Benjamin Elli Cunanan")
@@ -33,8 +33,4 @@ public class MainTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-    @DisplayName("calcAssignmentAvg() : ") {
-
-    }
 }
