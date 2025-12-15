@@ -11,10 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentTest {
 
     Department department = new Department("Programming");
-    Address address = new Address(41, "Plamondon", "Montreal", Address.Province.QC, "A1B 2C3");
+    Address address = new Address(41, "Vanier", "Montreal", Address.Province.QC, "A1B 2C3");
 
     @Test
-    @DisplayName("Registering Course -> true")
+    @DisplayName("registerCourse() : Registering Course -> true")
     void registerCourse1() {
         Student student = new Student("Benjamin", Student.Gender.MALE, address, department);
         Course newCourse = new Course("Intro to Programming", 4.0, department);
@@ -29,7 +29,7 @@ class StudentTest {
     }
 
     @Test
-    @DisplayName("Course is already registered -> false")
+    @DisplayName("registerCourse() : Course is already registered -> false")
     void registerCourse2() {
         Student student = new Student("Benjamin", Student.Gender.MALE, address, department);
         Course newCourse = new Course("Intro to Programming", 4.0, department);
@@ -46,7 +46,7 @@ class StudentTest {
     }
 
     @Test
-    @DisplayName("Registering multiple courses -> true")
+    @DisplayName("registerCourse() : Registering multiple courses -> true")
     void registerCourse3() {
         Student student = new Student("Benjamin", Student.Gender.MALE, address, department);
         Course newCourse1 = new Course("Intro to Programming", 4.0, department);
@@ -67,7 +67,7 @@ class StudentTest {
     }
 
     @Test
-    @DisplayName("Dropping Course -> true")
+    @DisplayName("dropCourse() : Dropping Course -> true")
     void dropCourse1() {
         Student student = new Student("Benjamin", Student.Gender.MALE, address, department);
         Course newCourse = new Course("Intro to Programming", 4.0, department);
@@ -81,7 +81,7 @@ class StudentTest {
     }
 
     @Test
-    @DisplayName("Course has been already dropped -> false")
+    @DisplayName("dropCourse() : Course has been already dropped -> false")
     void dropCourse2() {
         Student student = new Student("Benjamin", Student.Gender.MALE, address, department);
         Course newCourse = new Course("Intro to Programming", 4.0, department);
@@ -93,7 +93,7 @@ class StudentTest {
     }
 
     @Test
-    @DisplayName("Dropping multiple courses -> true")
+    @DisplayName("dropCourse() : Dropping multiple courses -> true")
     void dropCourse3() {
         Student student = new Student("Benjamin", Student.Gender.MALE, address, department);
         Course newCourse1 = new Course("Intro to Programming", 4.0, department);
@@ -104,5 +104,7 @@ class StudentTest {
 
         boolean expected = true;
         boolean actual = student.dropCourse(newCourse1) && student.dropCourse(newCourse2);
+
+        Assertions.assertEquals(expected, actual);
     }
 }
