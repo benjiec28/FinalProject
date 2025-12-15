@@ -53,7 +53,7 @@ public class Student {
      * @return true if the student is dropping the course ; false if the student is not on the registered course list to begin with.
      */
     public boolean dropCourse(Course course) {
-        if (registeredCourses.contains(course)) {
+        if (!registeredCourses.contains(course)) {
             return false;
         }
             registeredCourses.remove(course);
