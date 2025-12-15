@@ -92,30 +92,79 @@ class CourseTest {
     }
 
     @Test
-    @DisplayName("calcStudentAverage() : all assignments = integer -> integer")
+    @DisplayName("calcStudentAverage() : student avg = 65")
     void calcStudentsAverage1() {
+        Course newCourse = new Course("Intro to Programming", 4.0, department);
+        Student student = new Student("Carl", Student.Gender.MALE, address, department);
 
+        course.addAssignment("assignment 1", 40, 100);
+        course.addAssignment("assignment 2", 60, 100);
 
-        Assertions.assertArrayEquals(expected, actual);
+        newCourse.getAssignments().get(0).getScores().set(0, 75);
+        newCourse.getAssignments().get(1).getScores().set(0, 55);
+
+        int[] actual = newCourse.calcStudentsAverage();
+        int[] studentExpected = {63};
+
+        Assertions.assertArrayEquals(studentExpected, actual);
     }
 
     @Test
-    @DisplayName("calcStudentAverage() : all assignments = null -> 0")
+    @DisplayName("calcStudentAverage() : student avg = 0")
     void calcStudentsAverage2() {
+        Course newCourse = new Course("Intro to Programming", 4.0, department);
+        Student student = new Student("Carl", Student.Gender.MALE, address, department);
 
-        Assertions.assertArrayEquals(expected, actual);
+        course.addAssignment("assignment 1", 40, 100);
+        course.addAssignment("assignment 2", 60, 100);
+
+        student.registerCourse(newCourse);
+
+        newCourse.getAssignments().get(0).getScores().set(0, null);
+        newCourse.getAssignments().get(1).getScores().set(0, null);
+
+        int[] actual = newCourse.calcStudentsAverage();
+
+        int[] studentExpected = {0};
+
+        Assertions.assertArrayEquals(studentExpected, actual);
     }
 
     @Test
-    @DisplayName("calcStudentAverage() : assignments are null and integers -> integer")
+    @DisplayName("calcStudentAverage() : 2 students avg (65 and 80) -> 65, 80 ")
     void calcStudentsAverage3() {
+        Course newCourse = new Course("Intro to Programming", 4.0, department);
+        Student student1 = new Student("Benjamin", Student.Gender.MALE, address, department);
+        Student student2 = new Student("Carl", Student.Gender.MALE, address, department);
 
-        Assertions.assertArrayEquals(expected, actual);
+        course.addAssignment("assignment 1", 40, 100);
+        course.addAssignment("assignment 2", 60, 100);
+
+        student1.registerCourse(newCourse);
+        student2.registerCourse(newCourse);
+
+        newCourse.getAssignments().get(0).getScores().set(0, 75);
+        newCourse.getAssignments().get(1).getScores().set(0, 60);
+        newCourse.getAssignments().get(0).getScores().set(1, 55);
+        newCourse.getAssignments().get(1).getScores().set(1, 100);
+
+        int[] actual = newCourse.calcStudentsAverage();
+
+        int[] student1Expected = {63};
+        int[] student2Expected = {82};
+
+        Assertions.assertArrayEquals(student1Expected, new int[]{actual[0]});
+        Assertions.assertArrayEquals(student2Expected, new int[]{actual[1]});
     }
 
     @Test
     @DisplayName("addAssignment() : Adding assignments -> true")
     void addAssignment1() {
+        Course newCourse = new Course("Intro to Programming", 4.0, department);
+        newCourse.setAssignments(new ArrayList<>());
+
+        boolean expected = true;
+        boolean actual = newCourse.addAssignment("assignment 1", 40, 100);
 
         Assertions.assertEquals(expected, actual);
     }
@@ -123,6 +172,12 @@ class CourseTest {
     @Test
     @DisplayName("addAssignment() : Adding an already existing assignment -> false")
     void addAssignment2() {
+        Course newCourse = new Course("Intro to Programming", 4.0, department);
+        newCourse.setAssignments(new ArrayList<>());
+        newCourse.addAssignment("assignment 1", 40, 100);
+
+        boolean expected = true;
+        boolean actual = newCourse.addAssignment("assignment 1", 40, 100);
 
         Assertions.assertEquals(expected, actual);
     }
@@ -130,6 +185,11 @@ class CourseTest {
     @Test
     @DisplayName("addAssignment() : Adding multiple assignments -> true")
     void addAssignment3() {
+        Course newCourse = new Course("Intro to Programming", 4.0, department);
+        newCourse.setAssignments(new ArrayList<>());
+
+        boolean expected = true;
+        boolean actual = newCourse.addAssignment("assignment 1", 40, 100) &&  newCourse.addAssignment("assignment 2", 15, 100);
 
         Assertions.assertEquals(expected, actual);
     }
