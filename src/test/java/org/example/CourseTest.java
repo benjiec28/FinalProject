@@ -4,11 +4,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CourseTest {
     Department department = new Department("Programming");
     Course course = new Course("Intro to Programming", 4.0, department);
+    Address address = new Address(41, "Vanier", "Montreal", Address.Province.QC, "A1B 2C3");
 
     @Test
     @DisplayName("isAssignmentWeightValid() : Assignment weight = 100% -> true")
@@ -52,6 +55,11 @@ class CourseTest {
     @Test
     @DisplayName("registerStudent() : Registering student -> true")
     void registerStudent1() {
+        Student student = new Student("Benjamin", Student.Gender.MALE, address, department);
+        Course newCourse = new Course("Intro to Programming", 4.0, department);
+
+        boolean expected = true;
+        boolean actual = newCourse.registerStudent(student);
 
         Assertions.assertEquals(expected, actual);
     }
@@ -59,6 +67,13 @@ class CourseTest {
     @Test
     @DisplayName("registerStudent() : Student is already registered -> false")
     void registerStudent2() {
+        Student student = new Student("Benjamin", Student.Gender.MALE, address, department);
+        Course newCourse = new Course("Intro to Programming", 4.0, department);
+
+        newCourse.registerStudent(student);
+
+        boolean expected = false;
+        boolean actual = newCourse.registerStudent(student);
 
         Assertions.assertEquals(expected, actual);
     }
@@ -66,6 +81,12 @@ class CourseTest {
     @Test
     @DisplayName("registerStudent() : Registering multiple students -> true")
     void registerStudent3() {
+        Student student1 = new Student("Benjamin", Student.Gender.MALE, address, department);
+        Student student2 = new Student("Carl", Student.Gender.MALE, address, department);
+        Course newCourse = new Course("Intro to Programming", 4.0, department);
+
+        boolean expected = true;
+        boolean actual = newCourse.registerStudent(student1) && newCourse.registerStudent(student2);
 
         Assertions.assertEquals(expected, actual);
     }
@@ -73,6 +94,7 @@ class CourseTest {
     @Test
     @DisplayName("calcStudentAverage() : all assignments = integer -> integer")
     void calcStudentsAverage1() {
+
 
         Assertions.assertArrayEquals(expected, actual);
     }
