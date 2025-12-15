@@ -128,17 +128,8 @@ public class Course {
      * generates random scores.
      */
     public void generateScores() {
-        Random random = new Random();
-        int totalStudents = registeredStudents.size();
-
         for (Assignment assignment : assignments) {
-
-            for (int i = 0; i < totalStudents; i++) {
-                int maxScore = 100;
-                int randomScore = random.nextInt(maxScore + 1);
-
-                assignment.getScores().set(i, randomScore);
-            }
+            assignment.generateRandomScore();
         }
 
         this.calcStudentsAverage();
